@@ -28,8 +28,10 @@ def meets_criteria?(in_number)
   never_decreases = true
   the_same_digits_found = []
   0.upto(4) do |i|
-    two_adjacent_same = true if the_digits[i] == the_digits[i+1]
-    the_same_digits_found << the_digits[i]
+    if the_digits[i] == the_digits[i+1]
+      two_adjacent_same = true
+      the_same_digits_found << the_digits[i]
+    ends
     never_decreases = false if the_digits[i+1] < the_digits[i]
   end
   only_two_adjacent_same = false
