@@ -13,7 +13,6 @@ def meets_criteria_part1?(in_number)
     two_adjacent_same = true if the_digits[i] == the_digits[i+1]
     never_decreases = false if the_digits[i+1] < the_digits[i]
   end
-  the_digits
   return two_adjacent_same && never_decreases
 end
 
