@@ -31,7 +31,7 @@ def meets_criteria?(in_number)
     if the_digits[i] == the_digits[i+1]
       two_adjacent_same = true
       the_same_digits_found << the_digits[i]
-    ends
+    end
     never_decreases = false if the_digits[i+1] < the_digits[i]
   end
   only_two_adjacent_same = false
