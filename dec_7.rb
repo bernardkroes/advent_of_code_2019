@@ -37,7 +37,6 @@ class IntComp
     @is_paused = false
   end
 
-  # returns the next cursor pos
   def process_instruction
     the_instruction = @code_array[@cursor_pos]
     the_opcode = the_instruction % 100
