@@ -42,7 +42,7 @@ class AsteroidMap
   end
 
   def get_visibility_map_for(in_x, in_y)
-    visible_asteroids_map = Marshal.load(Marshal.dump(@asteroid_map)) # deep clone?
+    visible_asteroids_map = Marshal.load(Marshal.dump(@asteroid_map)) # deep clone
 
     # start sweeping squares until all corners out of bounds
     the_delta = 1
@@ -50,14 +50,11 @@ class AsteroidMap
     while on_map?(in_x, in_y - the_delta) || on_map?(in_x, in_y + the_delta) || on_map?(in_x - the_delta, in_y) || on_map?(in_x + the_delta, in_y)
       # sweep the borders
       (-the_delta..the_delta).each do |the_walk|
-        # top border
         trace_visibility_line_on_map(visible_asteroids_map, in_x, in_y, the_walk, -the_delta) if on_map?(in_x + the_walk, in_y - the_delta)
-        # bottom_border
         trace_visibility_line_on_map(visible_asteroids_map, in_x, in_y, the_walk, the_delta) if on_map?(in_x + the_walk, in_y + the_delta)
       end
       the_y_delta = the_delta -1 # avoid overlap
       (-the_y_delta..the_y_delta).each do |the_walk|
-        # right border
         trace_visibility_line_on_map(visible_asteroids_map, in_x, in_y, -the_delta, the_walk) if on_map?(in_x - the_delta, in_y + the_walk)
         trace_visibility_line_on_map(visible_asteroids_map, in_x, in_y, the_delta, the_walk) if on_map?(in_x + the_delta, in_y + the_walk)
       end
