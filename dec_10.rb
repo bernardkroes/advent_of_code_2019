@@ -104,7 +104,7 @@ the_map.find_best_location # check the last line of the output
 the_station_x = 11
 the_station_y = 11
 visibility_map = the_map.get_visibility_map_for(the_station_x, the_station_y)
-visibility_map[11][11] = "." # no need to laser ourselves
+visibility_map[the_station_x][the_station_y] = "." # no need to laser ourselves
 
 # gather coordinates
 all_visible_asteroids = []
