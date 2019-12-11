@@ -212,18 +212,12 @@ class Robot
 
   def output_image
     min_x = min_y = max_x = max_y = nil
-    @painted_hash.each_pair do |the_key, the_value|
-      the_key_split = the_key.split("_")
-      the_key_x = the_key_split[0].to_i
-      the_key_y = the_key_split[1].to_i
-      min_x ||= the_key_x
-      max_x ||= the_key_x
-      min_y ||= the_key_y
-      max_y ||= the_key_y
-      min_x = the_key_x if the_key_x < min_x
-      max_x = the_key_x if the_key_x > max_x
-      min_y = the_key_y if the_key_y < min_y
-      max_y = the_key_y if the_key_y > max_y
+    @painted_hash.each_key do |the_key|
+      the_key_x, the_key_y = the_key.split("_").map(&:to_i)
+      min_x = the_key_x if min_x.nil? || the_key_x < min_x
+      max_x = the_key_x if max_x.nil? || the_key_x > max_x
+      min_y = the_key_y if min_y.nil? || the_key_y < min_y
+      max_y = the_key_y if max_y.nil? || the_key_y > max_y
     end
 
     (min_y..max_y).each do |row|
