@@ -144,6 +144,10 @@ class IntComp
     @input_array << the_input
   end
 
+  def clear_output_array
+    @output_array = []
+  end
+
   # output array is kept: this does not provide protection against reading the same value multiple times
   def last_output
     return @output_array[-1]
@@ -160,8 +164,7 @@ class IntComp
   end
 end
 
-
-# return paddle_x and ball_x
+# returns paddle_x and ball_x
 def output_image(hash_image)
   puts "\e[H\e[2J" # clear the terminal for more fun
 
@@ -201,13 +204,13 @@ the_input_codes[0] = 2 # free games
 the_amp = IntComp.new(the_input_codes, [])
 
 the_last_score = 0
+the_tiles = {}
 while !the_amp.is_halted?
   the_amp.unpause
   while !the_amp.is_paused? && !the_amp.is_halted?
     the_amp.process_instruction
   end
 
-  the_tiles = {}
   the_amp.output_array.each_slice(3) do |the_slice|
     if the_slice[0] == -1 && the_slice[1] == 0 # segment display
       the_last_score = the_slice[2]
@@ -215,6 +218,7 @@ while !the_amp.is_halted?
       the_tiles["#{the_slice[0]}_#{the_slice[1]}"] = the_slice[2]
     end
   end
+  the_amp.clear_output_array
   paddle_x, ball_x = output_image(the_tiles)
 
   # decide on joystick move
