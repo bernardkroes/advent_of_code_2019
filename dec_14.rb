@@ -63,7 +63,7 @@ while the_needed_ore <= the_ore_amount
 
   if the_needed_ore <= the_ore_amount
     the_fuel_test_amount += the_step_size
-  else # too much: step back and reduce step size, if possible
+  else
     if the_step_size > 1
       the_fuel_test_amount -= the_step_size # step back
       the_step_size = the_step_size / 10    # reduce step size
