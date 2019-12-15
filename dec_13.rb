@@ -218,9 +218,6 @@ while !the_amp.is_halted?
       the_tiles["#{the_slice[0]}_#{the_slice[1]}"] = the_slice[2]
     end
   end
-  if the_last_score > 5088
-    exit
-  end
   the_amp.clear_output_array
   paddle_x, ball_x = output_image(the_tiles)
 
