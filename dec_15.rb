@@ -347,6 +347,7 @@ while !(the_droid.at_origin? && the_droid.all_directions_known?)
   the_output = the_amp.last_output
   the_droid.process_instruction(the_output)
   the_droid.output_image
+
   the_oxygen_machine_hash_key = "#{the_droid.x_pos}_#{the_droid.y_pos}" if the_output == 2
   the_step_count += 1
 end
